@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 
 class Make(models.Model):
     name = models.CharField(max_length=100)
@@ -21,13 +22,14 @@ class Car(models.Model):
     selling_price = models.DecimalField(max_digits=10, decimal_places=2)
     discount = models.DecimalField(max_digits=5, decimal_places=2)
 
+    @property
     def total_expenses(self):
         total_expenses = sum(expense.price for expense in self.expenses.all())
         return total_expenses
 
     @property
     def total_price(self):
-        return self.buying_price + self.total_expenses()
+        return self.buying_price + self.total_expenses
 
     def __str__(self):
         return f"{self.make} {self.model}"
@@ -47,3 +49,11 @@ class Expense(models.Model):
 
     def __str__(self):
         return self.name
+
+# class CustomUser(AbstractUser):
+#     pass
+
+#     class Meta:
+#         permissions = [
+#             ("can_manage_cars", "Can manage cars"),
+#        ]
