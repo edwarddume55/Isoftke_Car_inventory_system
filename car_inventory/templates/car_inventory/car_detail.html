@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <div class="card mt-4">
+        <div class="card-body">
+          <h2 class="card-title">{{ car }}</h2>
+          <img src="{{ car.car_image.url }}" alt="{{ car }}" class="img-fluid mb-4">
+          <p class="card-text">Total Price: {{ car.total_price }}</p>
+          <!-- Add other details such as make, model, expenses, etc. -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

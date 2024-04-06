@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+  <h2 class="my-4">Car Inventory</h2>
+  <div class="row row-cols-1 row-cols-md-4 g-4">
+    {% for car in cars %}
+    <div class="col">
+      <div class="card h-100">
+        <img src="{{ car.car_image.url }}" class="card-img-top" alt="{{ car.make }} {{ car.model }}">
+        <div class="card-body">
+          <h5 class="card-title">{{ car.make }} {{ car.model }}</h5>
+          <p class="card-text">Buying Price: {{ car.buying_price }}</p>
+          <!-- Add other fields as needed -->
+          <a href="{% url 'car_detail' car_id=car.id %}" class="btn btn-primary">View Details</a>
+          <!-- Add Edit and Delete buttons -->
+          <a href="{% url 'edit_car' car_id=car.id %}" class="btn btn-secondary">Edit</a>
+          <form action="{% url 'delete_car' car_id=car.id %}" method="post" style="display: inline;">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Delete</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
+
+
