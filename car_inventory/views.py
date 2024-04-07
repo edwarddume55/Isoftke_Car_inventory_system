@@ -105,14 +105,14 @@ def edit_car(request, car_id):
             return redirect('car_list')
     else:
         form = CarForm(instance=car)
-    return render(request, 'edit_car.html', {'form': form, 'car': car})
+    return render(request, 'admin_files/edit_car.html', {'form': form, 'car': car})
 
 def delete_car(request, car_id):
     car = get_object_or_404(Car, pk=car_id)
     if request.method == 'POST':
         car.delete()
         return redirect('car_list')
-    return render(request, 'delete_car.html', {'car': car})
+    return render(request, 'car_list.html', {'car': car})
 
 
 def add_user(request):
@@ -147,7 +147,7 @@ def delete_user(request, user_id):
     if request.method == 'POST':
         user.delete()
         return redirect('user_list')
-    return render(request, 'admin_files/delete_user.html', {'user': user})
+    return render(request, 'admin_files/user_list.html', {'user': user})
 
 def user_list(request):
     users = User.objects.all()

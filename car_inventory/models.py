@@ -50,10 +50,3 @@ class Expense(models.Model):
     def __str__(self):
         return self.name
 
-# class CustomUser(AbstractUser):
-#     pass
-
-#     class Meta:
-#         permissions = [
-#             ("can_manage_cars", "Can manage cars"),
-#        ]
