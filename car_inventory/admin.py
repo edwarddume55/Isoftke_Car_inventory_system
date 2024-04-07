@@ -6,3 +6,5 @@ admin.site.register(Make)
 admin.site.register(Model)
 admin.site.register(Document)
 admin.site.register(Expense)
+
+

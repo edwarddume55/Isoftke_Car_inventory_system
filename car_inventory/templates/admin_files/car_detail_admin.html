@@ -1,0 +1,33 @@
+{% extends 'admin_files/admin_base.html' %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <div class="card mt-4">
+        <div class="card-body">
+          <h2 class="card-title">{{ car }}</h2>
+          <img src="{{ car.car_image.url }}" alt="{{ car }}" class="img-fluid mb-4">
+          <p class="card-text"><strong>Total Price: Ksh. {{ car.total_price }}</strong></p>
+          <p class="card-text">Make: {{ car.make }}</p>
+          <p class="card-text">Model: {{ car.model }}</p>
+          <h4>Expenses:</h4>
+          <ul>
+            {% for expense in car.expenses.all %}
+              <li>{{ expense.name }} - Ksh.{{ expense.price }}</li>
+            {% endfor %}
+          </ul>
+          <h4>Documents:</h4>
+          <ul>
+            {% for document in car.documents.all %}
+              <li>{{ document.name }}: <a href="{{ document.file.url }}">Download</a></li>
+            {% endfor %}
+          </ul>
+          <a href="{% url 'add_expense' car_id=car.id %}" class="btn btn-primary">Add Expense</a>
+          <a href="{% url 'add_document' car_id=car.id %}" class="btn btn-primary">Add Document</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

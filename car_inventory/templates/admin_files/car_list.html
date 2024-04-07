@@ -1,0 +1,43 @@
+
+{% extends 'admin_files/admin_base.html' %}
+{% block content %}
+<body>
+
+    <h2>Car Inventory</h2>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Make</th>
+                <th>Model</th>
+                <th>Buying Price</th>
+                <th>Selling Price</th>
+                <th>Discount</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Loop through cars data and generate rows -->
+            {% for car in cars %}
+            <tr>
+                <td>{{ car.make }}</td>
+                <td>{{ car.model }}</td>
+                <td>{{ car.buying_price }}</td>
+                <td>{{ car.selling_price }}</td>
+                <td>{{ car.discount }}</td>
+                <td>
+                    <!-- Edit button -->
+                    <a href="{% url 'edit_car' car.id %}">Edit</a>
+                    <!-- Delete button -->
+                    <form action="{% url 'delete_car' car.id %}" method="post" style="display: inline;">
+                        {% csrf_token %}
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    </body>
+    {% endblock %}

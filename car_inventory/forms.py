@@ -1,6 +1,6 @@
 from django import forms
 from .models import Car, Document, Expense
-# from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
 
 class CarForm(forms.ModelForm):
@@ -19,8 +19,7 @@ class ExpenseForm(forms.ModelForm):
         fields = ['name', 'price']
         
 
-
-# class CustomUserCreationForm(UserCreationForm):
-#     class Meta:
-#         model = CustomUser
-#         fields = ['username', 'password1', 'password2', 'is_customer', 'is_employee']
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password']
